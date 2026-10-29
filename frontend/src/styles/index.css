@@ -47,6 +47,17 @@ html.dark {
   color: #E2E8F0;
 }
 
+/* Tailwind's default border color is light; make uncolored borders dark too. */
+.dark *,
+.dark ::before,
+.dark ::after {
+  border-color: #223047;
+}
+
+.dark .border-primary-500 { border-color: #2DD4BF; }
+.dark .border-primary-600 { border-color: #14B8A6; }
+.dark .border-t-primary-600 { border-top-color: #2DD4BF; }
+
 /* Surfaces */
 .dark .bg-background { background-color: #0B1220; }
 .dark .bg-surface { background-color: #111C2E; }

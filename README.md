@@ -18,6 +18,7 @@ A full-stack, AI-assisted travel itinerary planner. Describe a trip — destinat
 - [API reference](#api-reference)
 - [Testing](#testing)
 - [Production build & deployment](#production-build--deployment)
+- [Step-by-step deployment guide](DEPLOYMENT.md)
 - [Security notes](#security-notes)
 - [Known limitations](#known-limitations)
 - [Troubleshooting](#troubleshooting)
@@ -320,6 +321,8 @@ The production build validates imports, JSX, and code splitting. There is no fro
 ---
 
 ## Production build & deployment
+
+> 📘 For a click-by-click Render + Vercel walkthrough (with exact environment values), see **[DEPLOYMENT.md](DEPLOYMENT.md)**. The repo includes `render.yaml`, `frontend/vercel.json`, and `frontend/netlify.toml`.
 
 ### Frontend
 

@@ -1,0 +1,48 @@
+# Render blueprint for the TravelMate AI backend.
+# Deploy via Render Dashboard -> New -> Blueprint, or create a Web Service
+# manually using the same commands.
+services:
+  - type: web
+    name: travelmate-ai-api
+    runtime: python
+    plan: free
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+
+      # "development" keeps demo auth enabled for a no-Supabase course demo.
+      # Switch to "production" only after Supabase is configured.
+      - key: APP_ENV
+        value: development
+
+      # Set this to your deployed frontend URL, e.g. https://your-app.vercel.app
+      - key: FRONTEND_ORIGIN
+        sync: false
+
+      - key: AI_PROVIDER
+        value: demo
+      - key: AI_MODEL
+        value: gemini-1.5-flash
+      - key: AI_DEMO_FALLBACK
+        value: "false"
+      - key: AI_MAX_ATTEMPTS
+        value: "2"
+      - key: RATE_LIMIT_REQUESTS
+        value: "10"
+      - key: RATE_LIMIT_WINDOW_SECONDS
+        value: "600"
+
+      # Leave blank for the quick demo. Fill these in for real auth + persistence.
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_ANON_KEY
+        sync: false
+
+      # Never commit this value. Optional for demo mode; required for live AI.
+      - key: AI_API_KEY
+        sync: false

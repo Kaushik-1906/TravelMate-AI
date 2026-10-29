@@ -2,11 +2,15 @@
 REM Double-click this file to start TravelMate AI.
 REM It opens the backend and frontend in separate windows, then opens the app.
 setlocal
+
+REM Make Node.js available even when this window was opened with a stale PATH.
+if exist "%ProgramFiles%\nodejs\node.exe" set "PATH=%ProgramFiles%\nodejs;%PATH%"
+
 start "TravelMate Backend" "%~dp0backend\run-backend.bat"
 start "TravelMate Frontend" "%~dp0frontend\run-frontend.bat"
 
 echo Waiting for the servers to start...
-timeout /t 8 /nobreak >nul
+timeout /t 10 /nobreak >nul
 start "" "http://localhost:5173"
 
 echo.

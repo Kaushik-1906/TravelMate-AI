@@ -409,6 +409,7 @@ Deploy behind a process manager or container platform (Render, Railway, Fly.io, 
 | Demo trips disappeared | Expected: demo storage is in-memory. Configure Supabase for persistence. |
 | `Demo sessions are disabled` | You are in production mode; configure Supabase and sign in normally. |
 | `npm` blocked by PowerShell | Use `npm.cmd run dev` / `npm.cmd run build`. |
+| `'npm.cmd' is not recognized` | Node isn't on that terminal's PATH. Use `run-frontend.bat` (it locates npm automatically), open a fresh terminal, or call `"%ProgramFiles%\nodejs\npm.cmd" run dev`. |
 
 ---
 

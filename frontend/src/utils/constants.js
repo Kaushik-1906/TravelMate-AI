@@ -41,5 +41,5 @@ export const POPULAR_DESTINATIONS = [
   { name: 'Rome, Italy', img: 'https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&w=600&q=80', tag: 'Ancient History' },
   { name: 'Bali, Indonesia', img: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=600&q=80', tag: 'Tropical Paradise' },
   { name: 'Barcelona, Spain', img: 'https://images.unsplash.com/photo-1583422409516-2895a77efded?auto=format&fit=crop&w=600&q=80', tag: 'Architecture & Beach' },
-  { name: 'Jaipur, India', img: 'https://images.unsplash.com/photo-1603262110263-fb010d6e59d4?auto=format&fit=crop&w=600&q=80', tag: 'Royal Palaces' },
+  { name: 'Jaipur, India', img: 'https://images.unsplash.com/photo-1603262110263-fb0112e7cc33?fm=jpg&q=80&w=600&auto=format&fit=crop', tag: 'Royal Palaces' },
 ];

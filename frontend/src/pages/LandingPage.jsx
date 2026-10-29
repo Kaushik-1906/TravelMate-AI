@@ -1,7 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Compass, Sparkles, MapPin, Calendar, DollarSign, ArrowRight, ShieldCheck, CheckCircle2, Sliders, RefreshCw, Star, Users } from 'lucide-react';
 import { POPULAR_DESTINATIONS } from '../utils/constants';
+
+function DestinationCard({ dest }) {
+  const [imageFailed, setImageFailed] = useState(false);
+
+  return (
+    <Link
+      to={`/plan?destination=${encodeURIComponent(dest.name)}`}
+      className={`group relative rounded-2xl overflow-hidden aspect-[4/3] shadow-card hover:shadow-card-hover transition-all ${
+        imageFailed ? 'bg-gradient-to-br from-primary-700 via-navy-800 to-navy-950' : ''
+      }`}
+    >
+      {imageFailed ? (
+        <div className="absolute inset-0 flex items-center justify-center text-white/70">
+          <MapPin className="w-10 h-10" />
+        </div>
+      ) : (
+        <img
+          src={dest.img}
+          alt={dest.name}
+          loading="lazy"
+          decoding="async"
+          onError={() => setImageFailed(true)}
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+        />
+      )}
+      <div className="absolute inset-0 bg-gradient-to-t from-navy-950/80 via-navy-950/20 to-transparent p-5 flex flex-col justify-end text-white">
+        <span className="text-xs font-semibold text-teal-300">{dest.tag}</span>
+        <h3 className="text-xl font-bold">{dest.name}</h3>
+        <span className="text-xs text-navy-200 mt-1 opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1">
+          <span>Plan this trip</span>
+          <ArrowRight className="w-3.5 h-3.5" />
+        </span>
+      </div>
+    </Link>
+  );
+}
 
 export default function LandingPage() {
   return (
@@ -250,25 +286,7 @@ export default function LandingPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {POPULAR_DESTINATIONS.map((dest) => (
-              <Link
-                key={dest.name}
-                to={`/plan?destination=${encodeURIComponent(dest.name)}`}
-                className="group relative rounded-2xl overflow-hidden aspect-[4/3] shadow-card hover:shadow-card-hover transition-all"
-              >
-                <img
-                  src={dest.img}
-                  alt={dest.name}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy-950/80 via-navy-950/20 to-transparent p-5 flex flex-col justify-end text-white">
-                  <span className="text-xs font-semibold text-teal-300">{dest.tag}</span>
-                  <h3 className="text-xl font-bold">{dest.name}</h3>
-                  <span className="text-xs text-navy-200 mt-1 opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1">
-                    <span>Plan this trip</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </span>
-                </div>
-              </Link>
+              <DestinationCard key={dest.name} dest={dest} />
             ))}
           </div>
         </div>

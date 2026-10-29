@@ -87,6 +87,26 @@ travel project/
 
 ## Quick start (demo mode)
 
+### Windows: one-click option (this laptop)
+
+If the bundled Python runtime (`backend\.tools\python\python.exe`) is present, you do **not** need to install Python. Just double-click **`start-travelmate.bat`** in the project root. It opens the backend and frontend in separate windows and launches http://localhost:5173.
+
+To start them manually instead:
+
+```powershell
+# Terminal 1
+cd backend
+.\.tools\python\python.exe -m uvicorn app.main:app --reload --port 8000
+
+# Terminal 2
+cd frontend
+npm.cmd run dev
+```
+
+> The bundled `.tools` runtime is local-only and git-ignored. On a fresh clone, follow the standard setup below.
+
+### Standard setup
+
 **Prerequisites:** Python 3.11+, Node.js 18+.
 
 ### 1. Backend

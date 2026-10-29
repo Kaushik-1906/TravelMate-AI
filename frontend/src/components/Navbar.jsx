@@ -1,7 +1,25 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { Compass, MapPin, Calendar, User, LogOut, Menu, X, Sparkles, FolderHeart } from 'lucide-react';
+import { Compass, MapPin, Calendar, User, LogOut, Menu, X, Sparkles, FolderHeart, Moon, Sun } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+import { useTheme } from '../context/ThemeContext';
+
+function ThemeToggle({ iconClassName = 'w-4 h-4' }) {
+  const { isDark, toggleTheme } = useTheme();
+  const label = isDark ? 'Switch to light theme' : 'Switch to dark theme';
+
+  return (
+    <button
+      type="button"
+      onClick={toggleTheme}
+      aria-label={label}
+      title={label}
+      className="p-2 rounded-lg text-navy-500 hover:text-navy-900 hover:bg-navy-100 transition-colors"
+    >
+      {isDark ? <Sun className={iconClassName} /> : <Moon className={iconClassName} />}
+    </button>
+  );
+}
 
 export default function Navbar() {
   const { user, logout } = useAuth();
@@ -74,6 +92,7 @@ export default function Navbar() {
 
           {/* Right Action Buttons */}
           <div className="hidden md:flex items-center gap-3">
+            <ThemeToggle />
             {user ? (
               <div className="flex items-center gap-3">
                 <Link
@@ -111,10 +130,12 @@ export default function Navbar() {
           </div>
 
           {/* Mobile menu button */}
-          <div className="flex md:hidden">
+          <div className="flex md:hidden items-center gap-1">
+            <ThemeToggle iconClassName="w-5 h-5" />
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="p-2 rounded-lg text-navy-600 hover:bg-navy-100"
+              aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>

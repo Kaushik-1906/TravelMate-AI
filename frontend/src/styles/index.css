@@ -24,3 +24,193 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #94A3B8;
 }
+
+/* ==================================================================
+   Light/dark theme
+   The app's palette uses navy for both text (high numbers) and light
+   surfaces (low numbers), so the dark theme remaps those utilities
+   centrally instead of duplicating dark: classes on every element.
+   Intentionally dark sections (hero gradients, primary buttons,
+   overlays) are left untouched.
+   ================================================================== */
+
+html.dark {
+  background-color: #0B1220;
+}
+
+.dark {
+  color-scheme: dark;
+}
+
+.dark body {
+  background-color: #0B1220;
+  color: #E2E8F0;
+}
+
+/* Surfaces */
+.dark .bg-background { background-color: #0B1220; }
+.dark .bg-surface { background-color: #111C2E; }
+.dark .bg-white { background-color: #111C2E; }
+
+.dark .bg-surface\/85 { background-color: rgba(17, 28, 46, 0.85); }
+.dark .bg-surface\/80 { background-color: rgba(17, 28, 46, 0.8); }
+.dark .bg-background\/50 { background-color: rgba(11, 18, 32, 0.5); }
+.dark .bg-background\/80 { background-color: rgba(11, 18, 32, 0.8); }
+
+.dark .bg-navy-50 { background-color: #17233A; }
+.dark .bg-navy-50\/60 { background-color: rgba(23, 35, 58, 0.6); }
+.dark .bg-navy-50\/80 { background-color: rgba(23, 35, 58, 0.8); }
+.dark .bg-navy-100 { background-color: #1E2B45; }
+.dark .bg-navy-900 { background-color: #1B2942; }
+
+/* Text */
+.dark .text-navy-950 { color: #F8FAFC; }
+.dark .text-navy-900 { color: #F1F5F9; }
+.dark .text-navy-800 { color: #E2E8F0; }
+.dark .text-navy-700 { color: #CBD5E1; }
+.dark .text-navy-600 { color: #B6C4D6; }
+.dark .text-navy-500 { color: #94A3B8; }
+.dark .text-navy-400 { color: #8496AD; }
+
+/* Borders and dividers */
+.dark .border-navy-50 { border-color: #182438; }
+.dark .border-navy-100 { border-color: #223047; }
+.dark .border-navy-200 { border-color: #2C3D57; }
+.dark .border-navy-300 { border-color: #3A4F6D; }
+.dark .divide-navy-100 > :not([hidden]) ~ :not([hidden]) { border-color: #223047; }
+
+/* Teal accents */
+.dark .bg-primary-50 { background-color: rgba(13, 148, 136, 0.14); }
+.dark .bg-primary-50\/50 { background-color: rgba(13, 148, 136, 0.07); }
+.dark .bg-primary-50\/60 { background-color: rgba(13, 148, 136, 0.09); }
+.dark .bg-primary-50\/70 { background-color: rgba(13, 148, 136, 0.1); }
+.dark .bg-primary-100 { background-color: rgba(13, 148, 136, 0.22); }
+.dark .bg-primary-100\/80 { background-color: rgba(13, 148, 136, 0.18); }
+.dark .border-primary-100 { border-color: rgba(45, 212, 191, 0.25); }
+.dark .border-primary-200 { border-color: rgba(45, 212, 191, 0.35); }
+.dark .border-primary-200\/80 { border-color: rgba(45, 212, 191, 0.28); }
+.dark .text-primary-600 { color: #2DD4BF; }
+.dark .text-primary-700 { color: #5EEAD4; }
+.dark .text-primary-800 { color: #99F6E4; }
+.dark .text-primary-900 { color: #CCFBF1; }
+.dark .text-teal-700 { color: #5EEAD4; }
+
+/* Emerald / success */
+.dark .bg-emerald-50 { background-color: rgba(16, 185, 129, 0.12); }
+.dark .bg-emerald-50\/70 { background-color: rgba(16, 185, 129, 0.09); }
+.dark .bg-emerald-100 { background-color: rgba(16, 185, 129, 0.18); }
+.dark .border-emerald-100 { border-color: rgba(52, 211, 153, 0.25); }
+.dark .border-emerald-200 { border-color: rgba(52, 211, 153, 0.35); }
+.dark .text-emerald-600 { color: #34D399; }
+.dark .text-emerald-700 { color: #6EE7B7; }
+.dark .text-emerald-800 { color: #A7F3D0; }
+.dark .text-emerald-900 { color: #D1FAE5; }
+
+/* Amber / warning */
+.dark .bg-amber-50 { background-color: rgba(245, 158, 11, 0.12); }
+.dark .bg-amber-100 { background-color: rgba(245, 158, 11, 0.18); }
+.dark .border-amber-200 { border-color: rgba(245, 158, 11, 0.3); }
+.dark .text-amber-500 { color: #FBBF24; }
+.dark .text-amber-600 { color: #FBBF24; }
+.dark .text-amber-700 { color: #FCD34D; }
+.dark .text-amber-900 { color: #FDE68A; }
+
+/* Red / destructive */
+.dark .bg-red-50 { background-color: rgba(239, 68, 68, 0.12); }
+.dark .border-red-200 { border-color: rgba(239, 68, 68, 0.3); }
+.dark .text-red-600 { color: #F87171; }
+.dark .bg-rose-50 { background-color: rgba(244, 63, 94, 0.12); }
+.dark .border-rose-200 { border-color: rgba(244, 63, 94, 0.3); }
+.dark .text-rose-500 { color: #FB7185; }
+.dark .text-rose-600 { color: #FB7185; }
+.dark .text-rose-900 { color: #FDA4AF; }
+
+/* Sky / informational */
+.dark .bg-sky-50 { background-color: rgba(14, 165, 233, 0.12); }
+.dark .bg-sky-100 { background-color: rgba(14, 165, 233, 0.18); }
+.dark .border-sky-200 { border-color: rgba(14, 165, 233, 0.3); }
+.dark .text-sky-600 { color: #38BDF8; }
+.dark .text-sky-700 { color: #7DD3FC; }
+.dark .text-sky-900 { color: #BAE6FD; }
+
+/* Indigo accents */
+.dark .bg-indigo-50 { background-color: rgba(99, 102, 241, 0.12); }
+.dark .border-indigo-200 { border-color: rgba(99, 102, 241, 0.3); }
+.dark .text-indigo-700 { color: #A5B4FC; }
+
+/* Hover states */
+.dark .hover\:bg-navy-50:hover { background-color: #17233A; }
+.dark .hover\:bg-navy-100:hover { background-color: #1E2B45; }
+.dark .hover\:bg-navy-800:hover { background-color: #27354F; }
+.dark .hover\:bg-primary-50:hover { background-color: rgba(13, 148, 136, 0.16); }
+.dark .hover\:bg-primary-100:hover { background-color: rgba(13, 148, 136, 0.24); }
+.dark .hover\:bg-red-50:hover { background-color: rgba(239, 68, 68, 0.14); }
+.dark .hover\:text-navy-900:hover { color: #F8FAFC; }
+.dark .hover\:text-navy-700:hover { color: #E2E8F0; }
+.dark .hover\:text-primary-600:hover { color: #5EEAD4; }
+.dark .hover\:text-primary-700:hover { color: #99F6E4; }
+.dark .hover\:text-primary-800:hover { color: #CCFBF1; }
+.dark .hover\:border-navy-200:hover { border-color: #3A4F6D; }
+.dark .hover\:border-navy-300:hover { border-color: #4A6285; }
+.dark .group:hover .group-hover\:text-primary-700 { color: #5EEAD4; }
+
+/* Focus rings */
+.dark .focus\:ring-primary-100:focus { --tw-ring-color: rgba(45, 212, 191, 0.25); }
+
+/* Native form controls */
+.dark input:not([type='checkbox']):not([type='radio']):not([type='range']),
+.dark select,
+.dark textarea {
+  background-color: #0F1A2B;
+  color: #E2E8F0;
+  border-color: #2C3D57;
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: #64748B;
+}
+
+.dark select option {
+  background-color: #111C2E;
+  color: #E2E8F0;
+}
+
+/* Cards and shadows */
+.dark .shadow-card {
+  box-shadow: 0 2px 12px -2px rgba(0, 0, 0, 0.5), 0 1px 4px -1px rgba(0, 0, 0, 0.35);
+}
+.dark .hover\:shadow-card-hover:hover {
+  box-shadow: 0 12px 28px -4px rgba(0, 0, 0, 0.55), 0 4px 10px -2px rgba(0, 0, 0, 0.35);
+}
+
+/* Landing hero tint */
+.dark .from-primary-50\/60 {
+  --tw-gradient-from: rgba(13, 148, 136, 0.1) var(--tw-gradient-from-position);
+  --tw-gradient-to: rgba(13, 148, 136, 0) var(--tw-gradient-to-position);
+}
+.dark .via-background {
+  --tw-gradient-to: rgba(11, 18, 32, 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), #0B1220 var(--tw-gradient-via-position), var(--tw-gradient-to);
+}
+.dark .to-background {
+  --tw-gradient-to: #0B1220 var(--tw-gradient-to-position);
+}
+
+/* Selection and scrollbars */
+.dark ::selection {
+  background-color: rgba(13, 148, 136, 0.35);
+  color: #F0FDFA;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #0B1220;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #33445F;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #4A6285;
+}

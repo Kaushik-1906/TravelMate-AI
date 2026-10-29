@@ -34,6 +34,7 @@ A full-stack, AI-assisted travel itinerary planner. Describe a trip — destinat
 - **Authentication** — Supabase email/password auth with JWT verification on every protected request and row-level security (RLS) in Postgres.
 - **Graceful demo mode** — with no credentials, the app runs entirely locally with an in-memory store and a deterministic demo generator. Demo output is clearly labelled in the UI and API.
 - **Polished UX** — responsive Tailwind UI, loading/empty/error states, error boundary, toast-style alerts, lazy-loaded routes, budget charts (Recharts).
+- **Light & dark themes** — one-click toggle in the navbar, remembered per browser, and follows the OS preference until the user chooses. Charts and native controls adapt too.
 - **Guardrails** — strict request validation, per-IP rate limiting on AI endpoints, explicit CORS origins, no silent AI fallback, and no secrets in the frontend.
 
 ### Main screens

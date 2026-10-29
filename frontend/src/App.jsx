@@ -1,6 +1,7 @@
 import React, { Suspense, lazy, useEffect } from 'react';
 import { BrowserRouter, Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
+import { ThemeProvider } from './context/ThemeContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -36,56 +37,58 @@ function PageFallback() {
 export default function App() {
   return (
     <ErrorBoundary>
-      <AuthProvider>
-        <BrowserRouter>
-          <ScrollToTop />
-          <div className="flex flex-col min-h-screen bg-background text-navy-900 selection:bg-primary-100 selection:text-primary-900">
-            <Navbar />
-            <main className="flex-grow">
-              <Suspense fallback={<PageFallback />}>
-                <Routes>
-                  {/* Public Routes */}
-                  <Route path="/" element={<LandingPage />} />
-                  <Route path="/login" element={<LoginPage />} />
-                  <Route path="/signup" element={<SignupPage />} />
-                  <Route path="/plan" element={<TripBuilderPage />} />
-                  <Route path="/itinerary/preview" element={<ItineraryPage />} />
-                  <Route path="/itinerary/:tripId" element={<ItineraryPage />} />
+      <ThemeProvider>
+        <AuthProvider>
+          <BrowserRouter>
+            <ScrollToTop />
+            <div className="flex flex-col min-h-screen bg-background text-navy-900 selection:bg-primary-100 selection:text-primary-900">
+              <Navbar />
+              <main className="flex-grow">
+                <Suspense fallback={<PageFallback />}>
+                  <Routes>
+                    {/* Public Routes */}
+                    <Route path="/" element={<LandingPage />} />
+                    <Route path="/login" element={<LoginPage />} />
+                    <Route path="/signup" element={<SignupPage />} />
+                    <Route path="/plan" element={<TripBuilderPage />} />
+                    <Route path="/itinerary/preview" element={<ItineraryPage />} />
+                    <Route path="/itinerary/:tripId" element={<ItineraryPage />} />
 
-                  {/* Protected User Routes */}
-                  <Route
-                    path="/dashboard"
-                    element={
-                      <ProtectedRoute>
-                        <DashboardPage />
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route
-                    path="/saved-trips"
-                    element={
-                      <ProtectedRoute>
-                        <SavedTripsPage />
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route
-                    path="/profile"
-                    element={
-                      <ProtectedRoute>
-                        <ProfilePage />
-                      </ProtectedRoute>
-                    }
-                  />
+                    {/* Protected User Routes */}
+                    <Route
+                      path="/dashboard"
+                      element={
+                        <ProtectedRoute>
+                          <DashboardPage />
+                        </ProtectedRoute>
+                      }
+                    />
+                    <Route
+                      path="/saved-trips"
+                      element={
+                        <ProtectedRoute>
+                          <SavedTripsPage />
+                        </ProtectedRoute>
+                      }
+                    />
+                    <Route
+                      path="/profile"
+                      element={
+                        <ProtectedRoute>
+                          <ProfilePage />
+                        </ProtectedRoute>
+                      }
+                    />
 
-                  <Route path="*" element={<Navigate to="/" replace />} />
-                </Routes>
-              </Suspense>
-            </main>
-            <Footer />
-          </div>
-        </BrowserRouter>
-      </AuthProvider>
+                    <Route path="*" element={<Navigate to="/" replace />} />
+                  </Routes>
+                </Suspense>
+              </main>
+              <Footer />
+            </div>
+          </BrowserRouter>
+        </AuthProvider>
+      </ThemeProvider>
     </ErrorBoundary>
   );
 }

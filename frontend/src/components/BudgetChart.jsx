@@ -2,10 +2,12 @@ import React from 'react';
 import { ResponsiveContainer, PieChart, Pie, Cell, Tooltip, Legend } from 'recharts';
 import { formatCurrency } from '../utils/formatters';
 import { Bed, Utensils, Compass, Bus, Sparkles, AlertTriangle } from 'lucide-react';
+import { useTheme } from '../context/ThemeContext';
 
 const COLORS = ['#0D9488', '#0284C7', '#F59E0B', '#10B981', '#64748B'];
 
 export default function BudgetChart({ breakdown, totalBudget, estimatedTotal, currency = 'USD' }) {
+  const { isDark } = useTheme();
   if (!breakdown) return null;
 
   const data = [
@@ -55,6 +57,8 @@ export default function BudgetChart({ breakdown, totalBudget, estimatedTotal, cu
                 outerRadius={80}
                 paddingAngle={4}
                 dataKey="value"
+                stroke={isDark ? '#111C2E' : '#FFFFFF'}
+                strokeWidth={2}
               >
                 {data.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
@@ -62,7 +66,17 @@ export default function BudgetChart({ breakdown, totalBudget, estimatedTotal, cu
               </Pie>
               <Tooltip
                 formatter={(val) => [formatCurrency(val, currency), 'Estimated']}
-                contentStyle={{ borderRadius: '12px', border: '1px solid #E2E8F0', boxShadow: '0 4px 12px rgba(0,0,0,0.05)' }}
+                contentStyle={{
+                  borderRadius: '12px',
+                  border: `1px solid ${isDark ? '#2C3D57' : '#E2E8F0'}`,
+                  background: isDark ? '#111C2E' : '#FFFFFF',
+                  color: isDark ? '#E2E8F0' : '#0F172A',
+                  boxShadow: isDark
+                    ? '0 8px 24px rgba(0, 0, 0, 0.45)'
+                    : '0 4px 12px rgba(0, 0, 0, 0.05)',
+                }}
+                itemStyle={{ color: isDark ? '#E2E8F0' : '#0F172A' }}
+                labelStyle={{ color: isDark ? '#94A3B8' : '#64748B' }}
               />
             </PieChart>
           </ResponsiveContainer>

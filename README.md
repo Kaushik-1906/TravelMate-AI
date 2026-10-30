@@ -343,7 +343,20 @@ The production build validates imports, JSX, and code splitting. There is no fro
 
 ## Production build & deployment
 
-> 📘 For a click-by-click Render + Vercel walkthrough (with exact environment values), see **[DEPLOYMENT.md](DEPLOYMENT.md)**. The repo includes `render.yaml`, `frontend/vercel.json`, and `frontend/netlify.toml`.
+> 📘 For a click-by-click walkthrough (with exact environment values), see **[DEPLOYMENT.md](DEPLOYMENT.md)**. The repo includes `render.yaml`, `vercel.json`, and `frontend/vercel.json`.
+
+### One-project deployment (frontend + API on Vercel)
+
+The whole app can run in a single Vercel project:
+
+- `frontend/` is built to `frontend/dist` and served statically.
+- `api/index.py` exposes the FastAPI app as a Vercel Python function (dependencies in the root `requirements.txt`).
+- `vercel.json` routes `/api/*` to the function and everything else to `index.html`.
+- `frontend/src/config.js` sets `PRODUCTION_API_BASE_URL = 'same-origin'`, so the browser calls `/api` on the same domain (no CORS).
+
+Push to GitHub, import the repo in Vercel with an empty Root Directory, and deploy. Demo mode needs no environment variables.
+
+### Split deployment (static frontend + separate backend)
 
 ### Frontend
 

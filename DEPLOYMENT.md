@@ -17,6 +17,42 @@ There are two configurations. Pick one and keep both sides consistent.
 
 ---
 
+## Option S — Single Vercel deployment (recommended, no second host)
+
+The React frontend and the FastAPI backend can run in **one Vercel project**. This is how
+`https://travel-mate-ai-j25i.vercel.app` is deployed.
+
+**How it works**
+
+| Piece | Location |
+| --- | --- |
+| React build | `frontend/` → published from `frontend/dist` |
+| FastAPI app | `api/index.py` (Vercel Python function) imports `backend/app` |
+| Dependencies | root `requirements.txt` |
+| Routing | `vercel.json` rewrites `/api/*` to the function, everything else to `index.html` |
+| API address | `frontend/src/config.js` → `PRODUCTION_API_BASE_URL = 'same-origin'` (calls `/api` on the same domain) |
+
+**Deploy**
+
+1. Push the repo to GitHub.
+2. Vercel → **Add New → Project** → import the repo.
+3. Leave **Root Directory** empty (uses the root `vercel.json`).
+4. No environment variables are required for demo mode.
+5. Deploy. Every later `git push` redeploys automatically.
+
+Verify:
+
+```powershell
+Invoke-RestMethod https://YOUR-PROJECT.vercel.app/api/health
+```
+
+> **Trade-offs.** Vercel Functions are serverless: demo trips live in a per-instance
+> memory store, so on a cold start saved trips may not be listed. AI generation also
+> must finish within the function time limit (10s on Hobby, 60s when configured).
+> For durable data, use Supabase (Option B) or host the backend on Render (Option A).
+
+---
+
 ## Option A — Quick demo (no Supabase)
 
 ### Step 1 — Deploy the backend to Render

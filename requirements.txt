@@ -1,0 +1,14 @@
+# Runtime dependencies for the Vercel Python function in api/.
+# Keep this in sync with backend/requirements.txt (which also lists dev tools
+# such as pytest that are not needed in the deployed bundle).
+
+fastapi>=0.115.0
+pydantic>=2.8.0
+pydantic-settings>=2.4.0
+supabase>=2.7.0
+httpx>=0.27.0
+
+# Optional live-AI providers. They are imported lazily, so demo mode works
+# without them, but installing them keeps AI_PROVIDER=openai/gemini working.
+openai>=1.40.0
+google-genai>=0.1.1

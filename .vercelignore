@@ -1,11 +1,11 @@
-# Vercel only needs the frontend. Keeping the Python backend and SQL out of
-# the upload prevents Vercel from trying to build them as serverless functions.
-backend
-supabase
+# Keep build output, dependencies, and secrets out of the Vercel upload.
+# NOTE: do not exclude backend/ - the Python function in api/ imports it.
+node_modules
+dist
 .tools
 __pycache__
 *.pyc
+.pytest_cache
+supabase
 .env
 .env.*
-node_modules
-dist

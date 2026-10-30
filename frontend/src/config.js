@@ -14,4 +14,8 @@
 //
 // A VITE_API_BASE_URL environment variable, when set, takes priority over
 // this value (useful for preview deployments).
-export const PRODUCTION_API_BASE_URL = '';
+//
+// 'same-origin' means "call /api on the domain the site is served from".
+// That is how the deployed project runs: Vercel hosts the React frontend and
+// the FastAPI backend in the same project, so no cross-origin request is made.
+export const PRODUCTION_API_BASE_URL = 'same-origin';

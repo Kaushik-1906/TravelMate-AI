@@ -1,9 +1,13 @@
 import axios from 'axios';
 import { PRODUCTION_API_BASE_URL } from '../config';
 
-// Priority: build-time env var -> committed production URL -> local backend.
+// Priority: build-time env var -> committed production value -> local backend.
+// The sentinel 'same-origin' means the API is served from the same domain
+// (Vercel hosts the Python backend at /api).
 const ENV_API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || '').trim();
-const API_BASE_URL = ENV_API_BASE_URL || PRODUCTION_API_BASE_URL || 'http://localhost:8000';
+const RAW_API_BASE_URL = ENV_API_BASE_URL || PRODUCTION_API_BASE_URL;
+const API_BASE_URL =
+  RAW_API_BASE_URL === 'same-origin' ? '' : RAW_API_BASE_URL || 'http://localhost:8000';
 
 const apiClient = axios.create({
   baseURL: `${API_BASE_URL}/api`,

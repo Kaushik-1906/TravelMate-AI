@@ -1,25 +1,21 @@
-import json
+"""Vercel serverless entrypoint for the TravelMate AI FastAPI backend.
 
+Vercel loads the top-level ``app`` object as an ASGI application and routes
+requests to it. The backend package lives in ``backend/app`` so that the same
+code can also be deployed to a traditional host (Render, Railway, a VPS) with
+``uvicorn app.main:app``.
 
-async def app(scope, receive, send):
-    """Temporary routing probe: reports what path the Python function receives."""
-    if scope["type"] != "http":
-        return
+Local development does not use this file: run ``uvicorn app.main:app`` from the
+``backend`` directory instead.
+"""
 
-    payload = json.dumps(
-        {
-            "probe": "ok",
-            "path": scope.get("path"),
-            "root_path": scope.get("root_path"),
-            "query": scope.get("query_string", b"").decode(),
-        }
-    ).encode()
+import os
+import sys
 
-    await send(
-        {
-            "type": "http.response.start",
-            "status": 200,
-            "headers": [(b"content-type", b"application/json")],
-        }
-    )
-    await send({"type": "http.response.body", "body": payload})
+_BACKEND_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "backend"))
+if _BACKEND_DIR not in sys.path:
+    sys.path.insert(0, _BACKEND_DIR)
+
+from app.main import app  # noqa: E402  (import after sys.path setup)
+
+__all__ = ["app"]

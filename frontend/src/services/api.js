@@ -1,6 +1,9 @@
 import axios from 'axios';
+import { PRODUCTION_API_BASE_URL } from '../config';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
+// Priority: build-time env var -> committed production URL -> local backend.
+const ENV_API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || '').trim();
+const API_BASE_URL = ENV_API_BASE_URL || PRODUCTION_API_BASE_URL || 'http://localhost:8000';
 
 const apiClient = axios.create({
   baseURL: `${API_BASE_URL}/api`,

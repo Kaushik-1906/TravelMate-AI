@@ -78,6 +78,16 @@ Expected:
 
 `frontend/vercel.json` already adds the SPA fallback, so refreshing `/plan` or `/saved-trips` works.
 
+> **Already deployed and seeing `500: FUNCTION_INVOCATION_FAILED`?**
+> That means Vercel built the **repository root** instead of the frontend and tried to
+> run `backend/` as a Python function. Fix the existing project without deleting it:
+> **Project → Settings → Build & Deployment → Root Directory → Edit → `frontend` → Save**,
+> then **Deployments → ⋯ → Redeploy**.
+>
+> A root-level `vercel.json` and `.vercelignore` are included as a safety net, so deploying
+> from the repo root now builds `frontend/`. Setting the Root Directory is still the
+> recommended approach.
+
 ### Step 3 — Connect CORS
 
 1. Go back to Render → your service → **Environment**.
@@ -207,6 +217,8 @@ VITE_SUPABASE_ANON_KEY=<anon key>
 | 401 after demo login | Backend `APP_ENV=production` without Supabase | Use Option A consistently, or configure Supabase and use Option B |
 | 404 on page refresh | SPA rewrite missing | Ensure `frontend/vercel.json` is committed and Root Directory is `frontend` |
 | Build fails on Vercel | Wrong root directory | Set Root Directory to `frontend` |
+| `500: FUNCTION_INVOCATION_FAILED` | Vercel built the repo root and treated `backend/` as a Python function | Set Root Directory to `frontend` (Settings → Build & Deployment) and redeploy |
+| Blank page after successful deploy | Assets built from the wrong directory | Confirm Output Directory is `dist` when Root Directory is `frontend` |
 | First load is very slow | Render free tier cold start | Expected; warm it before sharing |
 | Trips vanish after a while | Demo in-memory store restarted | Configure Supabase for persistence |
 | `429 Too Many Requests` | Per-IP AI rate limit | Wait for the window or raise the limit |

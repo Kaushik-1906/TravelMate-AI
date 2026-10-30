@@ -1,0 +1,11 @@
+# Vercel only needs the frontend. Keeping the Python backend and SQL out of
+# the upload prevents Vercel from trying to build them as serverless functions.
+backend
+supabase
+.tools
+__pycache__
+*.pyc
+.env
+.env.*
+node_modules
+dist
